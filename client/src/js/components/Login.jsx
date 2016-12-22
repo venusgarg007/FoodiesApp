@@ -1,125 +1,89 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import Home from './MainComponent.jsx';
+
 
 export default class Login extends React.Component {
-	constructor() {
-		super();
-		this.state={"username":"default","password":"default"}
-
-		this.register=this.register.bind(this);
-	}
+ constructor(){
+   super();
+   this.submit = this.submit.bind(this);
+ }
 
 
-	register() {
-		$.ajax({
-			url: "http://localhost:8081/register",
-			type: "POST",
+ submit(){
+   console.log('register clicked');
+   console.log('username='+this.refs.username.value+'&email='+this.refs.email.value+'&password='+this.refs.password.value);
+   var that = this;
+   $.ajax({
+   url: "http://localhost:8085/users/register",
+   data: 'username='+this.refs.username.value+'&email='+this.refs.email.value+'&password='+this.refs.password.value,
+   type: "POST",
+   success : function(msg){
+     /*msg represents JSON data of news headlines sent back by external API*/
+      console.log('user registered');
+      console.log(msg);
+      alert('User saved');
+     },
+   error: function(err){
+     console.log('error in registration '+err);
+     alert('User already exists');
+   }
+ });
+ }
 
-			data: 'username='+document.getElementById("username").value+'&email=' + document.getElementById("email").value + '&password=' + document.getElementById("password").value,
+ render(){
+   return(
+     <div className = "row">
+       <div className = "col-lg-3 pull-right">
+       <h1>Sign in</h1>
+       <label> Username </label>
+       <input type = "text" className = "form-control input-sm" placeholder = "username" ref = "usernameText"/>
+       <br />
+       <label> Password </label>
+       <input type = "password" className = "form-control input-sm" placeholder = "password" ref = "passwordText"/>
+       <br/>
+       <input type ="submit" className = "btn btn-default btn-primary" value = "Login " />
+       <br/><br/>
 
-			success: function(msg) {
-				alert("User registered successfully");
-			},
-			error: function(err) {
-				console.log("error occurred");
-			}
-		})
-	}
 
-	user(euser) {
-		this.setState({"username":euser.target.value});
-		console.log(this.state.username);
-	}
+       <a href = "#registerModal" type = "button" data-toggle="modal" >Not Registered ? Click here to register... </a>
+                            <section className = "modal fade" id="registerModal">
+                                <article className = "modal-dialog">
+                                    <section className = "modal-content">
+                                        <article className = "modal-header">
+                                            <h4 className = "modal-title">Registration</h4>
+                                            <button className = "close" data-dismiss = "modal" type = "button">&times;</button>
+                                        </article>
 
-	pass(epass) {
-		this.setState({password:epass.target.value});
-	}
+                   <article className = "modal-body">
+                     <article className = "form-horizontal">
+                         <article className = "form-group">
+                           <article className = "col-sm-12 row">
+                             <label className = "col-sm-4">Username </label>
+                             <input type = "text" placeholder = "username" className = "col-sm-4 form-control" ref = "username"/>
+                           </article>
+                           <br/>
+                           <article className = "col-sm-12 row">
+                             <label className = "col-sm-4">Email </label>
+                             <input type = "text" placeholder = "email" className = "col-sm-4 form-control" ref = "email"/>
+                           </article>
+                           <br/>
 
-	userLogin() {
-		console.log("Inside login");
-		var login={"username":this.refs.user.value,"password":this.refs.pass.value}
+                           <article className = "col-sm-12 row">
+                             <label className = "col-lg-4">Password </label>
+                             <input type = "password" placeholder = "password" className = "col-lg-4 form-control" ref = "password"/>
+                           </article>
+                         </article>
+                     </article>
+                   </article>
 
-		console.log("login clicked");
-		console.log(login);
-
-		$.ajax({
-			url: "http://localhost:8081/login",
-			type: "POST",
-			data:login,
-
-			success : function(data) {
-				console.log("inside success");
-				alert("Successfully logged in");
-				browserHistory.push('/home');
-			},
-
-			error: function(err) {
-				console.log(err);
-				alert("Incorrect username and password");
-				browserHistory.push('/registraionAndLogin');
-			}
-		});
-	}
-
-	render() {
-		return (
-			<div>
-				<center>
-				<h1>SignUp</h1>
-				<h3>Username:<input type="text" placeholder="Enter Username" ref="user"/></h3>
-
-				<h3>Password:<input type="password" placeholder="Enter password" ref="pass"/></h3>
-
-				<button className="btn btn-primary" type="button" onClick={this.userLogin.bind(this)}>Login</button>
-
-				<br />
-				<br />
-				If New User,Click Here <a href="#ModalWindow" role="button" data-toggle="modal" class="btn btn-primary" >Sign Up</a>
-				</center>
-
-				<div className="modal fade"  id="ModalWindow">
-					<div className="modal-dialog">
-						<div className="modal-content">
-							<div className="modal-header">
-								<button className="close" data-dismiss="modal">X</button>
-								<h4>User Registration</h4>
-							</div>
-
-							<div className="modal-body">
-								<form className="form-horizontal">
-									<div className="form-group">
-										<label className="col-lg-2 control-label" for="username">Username</label>
-										<div class="col-lg-10">
-											<input class="form-control" id="username" type="text" placeholder="Enter username" />
-										</div>
-									</div>
-
-									<div className="form-group">
-										<label className="col-lg-2 control-label" for="email">Email</label>
-										<div class="col-lg-10">
-											<input class="form-control" id="email" type="email" placeholder="Enter email -id" />
-										</div>
-									</div>
-
-									<div className="form-group">
-										<label className="col-lg-2 control-label" for="password">Password</label>
-										<div class="col-lg-10">
-											<input class="form-control" id="password" type="password" placeholder="Enter Password" />
-										</div>
-									</div>
-
-									<div className="modal-footer">
-										<button className="btn btn-primary" type="button" data-dismiss="modal" onClick={this.register}>Submit</button>
-
-										<button className="btn btn-success" type="button" data-dismiss="modal" >Close</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		)
-	}
+                   <article className="modal-footer">
+                     <input type = "submit" className = "btn btn-primary" data-dismiss = "modal" value ="Register" onClick = {this.submit}/>
+                   </article>
+                                    </section>
+                                </article>
+                            </section>
+       </div>
+     </div>
+   )
+ }
 }

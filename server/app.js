@@ -16,6 +16,13 @@ var mongoose = require('mongoose');
 
 var db = mongoose.connection;
 
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpack = require("webpack");
+var webpackConfig = require("../webpack.config");
+var webpackHotMiddleware = require('webpack-hot-middleware');
+
+var compiler = webpack(webpackConfig);
+
 mongoose.connect('mongodb://localhost/foodies');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -30,6 +37,23 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(webpackDevMiddleware(compiler, {
+ publicPath: webpackConfig.output.publicPath,
+   stats: {colors: true}, // Same as `output.publicPath` in most cases.
+   quiet: true,
+   noInfo: true,
+   host: '0.0.0.0',
+   watchOptions:{
+     aggregateTimeout:300,
+     poll:1000
+   }
+}));
+
+app.use(webpackHotMiddleware(compiler, {
+   log: console.log,
+}))
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

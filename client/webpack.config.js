@@ -25,6 +25,10 @@ module.exports = {
 
 	resolve: {
     extensions: ['','.js','.jsx','/index','/index.js','/index.jsx']
-  }
+  },
+	devServer : {
+        host : '0.0.0.0',
+        port : '8080'
+    }
 
 }

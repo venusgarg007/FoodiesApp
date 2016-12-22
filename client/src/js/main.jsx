@@ -1,7 +1,9 @@
 import 'file?name=[name].[ext]!../index.html';
+import 'file?name=[name].[ext]!../css/styles.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-var {browserHistory, hashHistory, Route, Router, IndexRoute} = require('react-router');
+var {browserHistory,hashHistory, Route, Router, IndexRoute}
+= require('react-router');
 
 import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
