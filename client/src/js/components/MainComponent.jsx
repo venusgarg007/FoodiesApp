@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SearchComponent from './SearchComponent'
-import ComponentManager from './ComponentManager'
 
 export default class Home extends React.Component {
 	constructor() {
@@ -30,8 +28,7 @@ export default class Home extends React.Component {
 	render() {
 		return(
 		<div>
-		<SearchComponent sendSearchValue = {this.fetchNewsFromExternalAPI} />
-		<ComponentManager newsArrRef={this.state.newsArr} />
+		
 		</div>
 		)
 	}

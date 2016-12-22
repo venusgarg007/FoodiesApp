@@ -2,7 +2,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import Home from './MainComponent.jsx';
 
-export default class registrationAndLogin extends React.Component {
+export default class Login extends React.Component {
 	constructor() {
 		super();
 		this.state={"username":"default","password":"default"}

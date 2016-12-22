@@ -1,12 +1,12 @@
 import 'file?name=[name].[ext]!../index.html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-var {browserHistory,hashHistory, Route, Router, IndexRoute} = require('react-router');
+var {browserHistory, hashHistory, Route, Router, IndexRoute} = require('react-router');
 
 import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
 import NavBar from './components/NavBar.jsx';
-import registrationAndLogin from './components/registrationAndLogin.jsx';
+import Login from './components/Login.jsx';
 
 class MainComponent extends React.Component {
 
@@ -23,7 +23,7 @@ class MainComponent extends React.Component {
 ReactDOM.render(
 	<Router history={browserHistory}>
 	<Route path="/" component={MainComponent} >
-		<IndexRoute component = {registrationAndLogin} />
+		<IndexRoute component = {Login} />
 		<Route path="/about" component={About}/>
 		<Route path="/contact" component={Contact}/>
 	</Route>
