@@ -23,6 +23,12 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 
 var compiler = webpack(webpackConfig);
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var connectflash = require('connect-flash');
+
+var registerUser = require('./models/users');
+
 mongoose.connect('mongodb://localhost/foodies');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -37,6 +43,33 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(require('serve-static')(__dirname + '/../../public'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    registerUser.findOne({ username: username, password: password }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+    
+      return done(null, user);
+    });
+  }
+));
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+  passport.deserializeUser(function(id, done) {
+registerUser.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 app.use(webpackDevMiddleware(compiler, {
  publicPath: webpackConfig.output.publicPath,

@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 var users = require('../models/users');
+var passport = require('passport');
 
+router.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+    
+    res.send("succesfully logged in");
+});
 
 router.post('/register', function(req, res)
 {

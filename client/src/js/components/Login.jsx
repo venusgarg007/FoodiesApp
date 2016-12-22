@@ -6,15 +6,38 @@ export default class Login extends React.Component {
  constructor(){
    super();
    this.submit = this.submit.bind(this);
+   this.loginFunction = this.loginFunction.bind(this);
  }
 
+
+ loginFunction()
+  {
+    var uname = this.refs.usernameText.value;
+    var pass = this.refs.passwordText.value;
+
+    $.ajax({
+    url: "http://localhost:8081/users/login",
+    type: "POST",
+    data:'username='+uname+'&password='+pass,
+    success : function(msg)
+    {
+    alert("successfully loggedin");
+    console.log("successfully logged to database");
+      browserHistory.push('/home');
+    },
+    error: function(err){
+      alert("check the username and password");
+   }
+  });
+
+}
 
  submit(){
    console.log('register clicked');
    console.log('username='+this.refs.username.value+'&email='+this.refs.email.value+'&password='+this.refs.password.value);
    var that = this;
    $.ajax({
-   url: "http://localhost:8085/users/register",
+   url: "http://localhost:8081/users/register",
    data: 'username='+this.refs.username.value+'&email='+this.refs.email.value+'&password='+this.refs.password.value,
    type: "POST",
    success : function(msg){
@@ -41,7 +64,7 @@ export default class Login extends React.Component {
        <label> Password </label>
        <input type = "password" className = "form-control input-sm" placeholder = "password" ref = "passwordText"/>
        <br/>
-       <input type ="submit" className = "btn btn-default btn-primary" value = "Login " />
+       <input type ="submit" className = "btn btn-default btn-primary" value = "Login " onClick={this.loginFunction} />
        <br/><br/>
 
 
