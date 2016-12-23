@@ -12,10 +12,10 @@ export default class About extends  React.Component{
 		About Us
 		</h2>
 		<p>
-		This is About Us.
+		We are here to help you search for the restaurants in your favourite city and with your favourite food.
 		</p>
 		<p>
-		<a className="btn btn-primary btn-large" href="#">Learn more</a>
+		<a className="btn btn-primary btn-medium" target="_blank" href="https://www.zomato.com/bangalore">Learn more</a>
 		</p>
 		</div>
 		</div>

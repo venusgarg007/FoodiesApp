@@ -12,7 +12,8 @@ router.post('/save', function(req, res)
       restaurant_id : req.body.restaurant_id,
       restaurant_name : req.body.restaurant_name,
       restaurant_address : req.body.restaurant_address,
-      cuisine_id : req.body.cuisine_id,
+      featured_image : req.body.featured_image,
+      url : req.body.url,
       cuisine_name : req.body.cuisine_name,
       comments : req.body.comments
     });

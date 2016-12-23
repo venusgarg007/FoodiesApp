@@ -5,7 +5,7 @@ var restaurantSchema= new schema(
   {
     city_id:Number, 
     city_name:String,
-    restaurant_id:Number,
+    restaurant_id:{type:Number, unique:true},
     restaurant_name:String,
     restaurant_address:String,
     featured_image:String,

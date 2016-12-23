@@ -11,11 +11,11 @@ export default class Contact extends  React.Component {
 		Contact
 		</h2>
 		<p>
-		This is Contact.
+		You can reach us on:
+
+		contact@zomato.com
 		</p>
-		<p>
-		<a className="btn btn-primary btn-large" href="#">Learn more</a>
-		</p>
+		
 		</div>
 		</div>
 		</div>

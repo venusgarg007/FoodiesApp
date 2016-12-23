@@ -56,7 +56,7 @@ export default class Login extends React.Component {
  render(){
    return(
      <div className = "row">
-       <div className = "col-lg-3 pull-right">
+       <div className = "col-lg-3">
        <h1>Sign in</h1>
        <label> Username </label>
        <input type = "text" className = "form-control input-sm" placeholder = "username" ref = "usernameText"/>

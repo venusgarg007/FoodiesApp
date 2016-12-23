@@ -54,7 +54,6 @@ export default class Home extends React.Component {
 	render() {
 		return(
 		<div id="main">
-			<h3>Home</h3>
 			<Search searchCity = {this.searchByCity} searchCuisine = {this.searchByCuisines}/>
 			<IterateRestro allrestroarr = {this.state.restroarr} />
 		</div>

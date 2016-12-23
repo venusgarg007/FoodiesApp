@@ -11,13 +11,22 @@ export default class Search extends React.Component{
         this.props.searchCuisine(document.getElementById("city").value,document.getElementById("cuisine").value);
 	}
 	render(){
-		return(
-			<div>
-				<h3>Search</h3>
-				<input type="text" placeholder="Search by city" id="city"/>
-				<input type="text" placeholder="Search cuisines" id="cuisine"/>
-				<button type="button" onClick={this.searchCuisinesHandler} >Search</button>
-			</div>
-		)
-	}
+        return(
+            <div className="row">
+             <div className="col-sm-12">
+                <div className="jumbotron">
+                    <div className="form-group">
+                        <h1><center>Foodies</center></h1>
+                           <input type="text" className="form-control input"  placeholder="Search by city" id = "city"/>
+                           <br/>
+                           <input type="text" className="form-control input"  placeholder="Search cuisines" id = "cuisine"/>
+                                
+                           <br/>
+                          <center><button className="btn btn-success" onClick={this.searchCuisinesHandler}>SEARCH</button></center>
+                    </div>
+                </div>     
+              </div>    
+            </div>
+        )
+    }
 }

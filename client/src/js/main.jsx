@@ -7,6 +7,7 @@ var {browserHistory,hashHistory, Route, Router, IndexRoute}
 
 import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
+import FetchFavouritecomponent from './components/FetchFavouritecomponent';
 import NavBar from './components/NavBar.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
@@ -29,7 +30,9 @@ ReactDOM.render(
 		<IndexRoute component = {Login} />
 		<Route path="/home" component={Home}/>
 		<Route path="/about" component={About}/>
+		<Route path="/login" component={Login}/>
 		<Route path="/contact" component={Contact}/>
+		<Route path="/favrestaurants" component={FetchFavouritecomponent}/>
 	</Route>
 
 </Router>,document.getElementById('content'));
