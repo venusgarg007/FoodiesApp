@@ -8,8 +8,7 @@ export default class Search extends React.Component{
 
 	searchCuisinesHandler(){
 		console.log('clicked search 2 '+ document.getElementById("cuisine").value);
-		this.props.searchCity(document.getElementById("city").value);
-		this.props.searchCuisine(document.getElementById("cuisine").value);
+        this.props.searchCuisine(document.getElementById("city").value,document.getElementById("cuisine").value);
 	}
 	render(){
 		return(
