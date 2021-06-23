@@ -7,3 +7,5 @@ The user can create an account and login to do more stuff like-<br>
 (b) Viewing all the saved list of restaurants<br>
 (c) Deleting the restaurant from the saved list<br>
 (d) Updating the comments for a particular restaurant<br>
+
+
