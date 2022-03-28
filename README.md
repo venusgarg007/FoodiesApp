@@ -8,4 +8,3 @@ The user can create an account and login to do more stuff like-<br>
 (c) Deleting the restaurant from the saved list<br>
 (d) Updating the comments for a particular restaurant<br>
 
-This is work from develop branch
